@@ -1,4 +1,9 @@
 const fs = require("fs");
-const content = fs.readFileSync(__dirname + "/assets/index.html", "utf-8");
+const path = require("path");
+
+const content = fs.readFileSync(
+  path.join(__dirname, "assets", "index.html"),
+  "utf-8"
+);
 
 console.log(content);
