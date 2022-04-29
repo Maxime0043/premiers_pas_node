@@ -1,6 +1,7 @@
 const http = require("http");
 const server = http.createServer((req, res) => {
-  console.time("timer");
+  // console.time("timer");
+  let start = performance.now();
 
   try {
     // ICI MIDDLEWARE A EXECUTER AVANT DE TRAITER LA REQUETE.
@@ -24,7 +25,9 @@ const server = http.createServer((req, res) => {
     res.end();
   }
 
-  console.timeEnd("timer");
+  // console.timeEnd("timer");
+  let end = performance.now();
+  console.log("Requête a pris : ", end - start);
 });
 
 server.listen(3000);
