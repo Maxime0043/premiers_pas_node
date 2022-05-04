@@ -77,14 +77,11 @@ describe("CRUD API", () => {
       return request(server).get("/api/name/999").expect(404);
     });
 
-    test.skip("POST /api/name/0\t - [KO - méthode non correct]", () => {
-      return request(server)
-        .post("/api/name/0")
-        .expect(405)
-        .expect("Content-Type", /^application\/json/);
+    test("POST /api/name/0\t - [KO - méthode non correct]", () => {
+      return request(server).post("/api/name/0").expect(404);
     });
 
-    test.skip("PUT /api/name/0\t\t - [OK]", () => {
+    test("PUT /api/name/0\t\t - [OK]", () => {
       return request(server)
         .put("/api/name/0")
         .send({
@@ -99,7 +96,7 @@ describe("CRUD API", () => {
         });
     });
 
-    test.skip("PUT /api/name/999\t - [KO - id non trouvé]", () => {
+    test("PUT /api/name/999\t - [KO - id non trouvé]", () => {
       return request(server)
         .put("/api/name/999")
         .send({
@@ -109,7 +106,7 @@ describe("CRUD API", () => {
         .expect("Content-Type", /^application\/json/);
     });
 
-    test.skip("PUT /api/name/0\t\t - [KO - données non valides]", () => {
+    test("PUT /api/name/0\t\t - [KO - données non valides]", () => {
       return request(server)
         .put("/api/name/0")
         .send({
@@ -119,14 +116,14 @@ describe("CRUD API", () => {
         .expect("Content-Type", /^application\/json/);
     });
 
-    test.skip("PUT /api/name/0\t\t - [KO - données vides]", () => {
+    test("PUT /api/name/0\t\t - [KO - données vides]", () => {
       return request(server)
         .put("/api/name/0")
         .expect(424)
         .expect("Content-Type", /^application\/json/);
     });
 
-    test.skip("DELETE /api/name/0\t - [OK]", () => {
+    test("DELETE /api/name/0\t - [OK]", () => {
       return request(server)
         .delete("/api/name/0")
         .expect(200)
@@ -136,7 +133,7 @@ describe("CRUD API", () => {
         });
     });
 
-    test.skip("DELETE /api/name/999\t - [KO - id non trouvé]", () => {
+    test("DELETE /api/name/999\t - [KO - id non trouvé]", () => {
       return request(server)
         .delete("/api/name/999")
         .expect(404)
