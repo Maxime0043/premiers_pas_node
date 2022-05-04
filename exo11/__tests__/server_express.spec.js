@@ -3,17 +3,12 @@ const server = require("../server_express");
 const db = require("../db");
 
 describe("CRUD API", () => {
-  // beforeAll(() => server.listen(5000));
-  // afterAll(() => server.close());
-  // beforeEach(() => console.log(db));
-  // afterEach(() => console.log(db));
-
   describe("Route /api/names", () => {
     test("GET /api/names\t\t - [OK]", () => {
       return request(server)
         .get("/api/names")
         .expect(200)
-        .expect("Content-Type", /^application\/json/);
+        .expect("Content-Type", /json/);
     });
 
     test("PUT /api/names\t\t - [KO - méthode non correct]", () => {
@@ -36,7 +31,7 @@ describe("CRUD API", () => {
           name: "Maurice",
         })
         .expect(201)
-        .expect("Content-Type", /^application\/json/)
+        .expect("Content-Type", /json/)
         .then((response) => {
           const data = JSON.parse(response.text);
           const result = JSON.stringify({ nom: data.name });
@@ -51,14 +46,14 @@ describe("CRUD API", () => {
           blabla: "Maurice",
         })
         .expect(424)
-        .expect("Content-Type", /^application\/json/);
+        .expect("Content-Type", /json/);
     });
 
     test("POST /api/names\t\t - [KO - données vides]", () => {
       return request(server)
         .post("/api/names")
         .expect(424)
-        .expect("Content-Type", /^application\/json/);
+        .expect("Content-Type", /json/);
     });
   });
 
@@ -67,7 +62,7 @@ describe("CRUD API", () => {
       return request(server)
         .get("/api/name/0")
         .expect(200)
-        .expect("Content-Type", /^application\/json/)
+        .expect("Content-Type", /json/)
         .then((response) => {
           expect(response.text).toBe(JSON.stringify(db.memoryDb.get(0)));
         });
@@ -88,7 +83,7 @@ describe("CRUD API", () => {
           name: "Martine",
         })
         .expect(201)
-        .expect("Content-Type", /^application\/json/)
+        .expect("Content-Type", /json/)
         .then((response) => {
           const data = JSON.parse(response.text);
           const result = JSON.stringify({ nom: data.name });
@@ -103,7 +98,7 @@ describe("CRUD API", () => {
           name: "Martine",
         })
         .expect(404)
-        .expect("Content-Type", /^application\/json/);
+        .expect("Content-Type", /json/);
     });
 
     test("PUT /api/name/0\t\t - [KO - données non valides]", () => {
@@ -113,21 +108,21 @@ describe("CRUD API", () => {
           blabla: "Maurice",
         })
         .expect(424)
-        .expect("Content-Type", /^application\/json/);
+        .expect("Content-Type", /json/);
     });
 
     test("PUT /api/name/0\t\t - [KO - données vides]", () => {
       return request(server)
         .put("/api/name/0")
         .expect(424)
-        .expect("Content-Type", /^application\/json/);
+        .expect("Content-Type", /json/);
     });
 
     test("DELETE /api/name/0\t - [OK]", () => {
       return request(server)
         .delete("/api/name/0")
         .expect(200)
-        .expect("Content-Type", /^application\/json/)
+        .expect("Content-Type", /json/)
         .then(() => {
           expect(db.memoryDb.get(0)).toBe(undefined);
         });
@@ -137,7 +132,7 @@ describe("CRUD API", () => {
       return request(server)
         .delete("/api/name/999")
         .expect(404)
-        .expect("Content-Type", /^application\/json/);
+        .expect("Content-Type", /json/);
     });
   });
 });

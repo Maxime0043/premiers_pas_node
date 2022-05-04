@@ -59,12 +59,12 @@ const verifyId = (req, res, next) => {
 
 server.get("/api/name/:id", verifyId, (req, res) => {
   const id = parseInt(req.params.id);
-  res.status(200).json(Object.fromEntries(db.memoryDb)[id]);
+  res.status(200).json(db.memoryDb.get(id));
 });
 
 server.delete("/api/name/:id", verifyId, (req, res) => {
   const id = parseInt(req.params.id);
-  const data = Object.fromEntries(db.memoryDb)[id];
+  const data = db.memoryDb.get(id);
 
   db.memoryDb.delete(id);
 
