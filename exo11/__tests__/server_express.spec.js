@@ -63,7 +63,7 @@ describe("CRUD API", () => {
   });
 
   describe("Route /api/name/{id}", () => {
-    test.skip("GET /api/name/0\t\t - [OK]", () => {
+    test("GET /api/name/0\t\t - [OK]", () => {
       return request(server)
         .get("/api/name/0")
         .expect(200)
@@ -73,7 +73,7 @@ describe("CRUD API", () => {
         });
     });
 
-    test.skip("GET /api/name/999\t - [KO - id non trouvé]", () => {
+    test("GET /api/name/999\t - [KO - id non trouvé]", () => {
       return request(server).get("/api/name/999").expect(404);
     });
 
