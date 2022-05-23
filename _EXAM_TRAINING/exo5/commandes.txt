@@ -1,0 +1,6 @@
+http POST :5000/signup name=Pierre email=pierre@bob.com password=coucou 
+
+http POST :5000/signin email=pierre@bob.com password=coucou
+=> Récupère le token dans le header du retour
+
+http POST :5000/api/names name=Test1 "x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNjUzMjIzMzMwfQ.ULTMO1YPoVA_6_O8sMUI1OarGijH9Kp9bfeqjxs3JLU"
